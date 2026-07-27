@@ -1,0 +1,111 @@
+# =========================================================
+# Python
+# =========================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+
+# =========================================================
+# Virtual environments
+# =========================================================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================================================
+# Python tooling caches
+# =========================================================
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =========================================================
+# Jupyter
+# =========================================================
+.ipynb_checkpoints/
+
+# =========================================================
+# Build and packaging
+# =========================================================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================================================
+# Dataset
+# =========================================================
+data/*
+!data/.gitkeep
+
+# =========================================================
+# Trained models
+# =========================================================
+models/*
+!models/.gitkeep
+
+# =========================================================
+# Experimental results
+#
+# Se conservan las carpetas. Los resultados publicados se
+# agregarán de forma explícita según la política del proyecto.
+# =========================================================
+results/raw/*
+!results/raw/.gitkeep
+
+results/processed/*
+!results/processed/.gitkeep
+
+results/figures/*
+!results/figures/.gitkeep
+
+results/manifests/*
+!results/manifests/.gitkeep
+
+# =========================================================
+# Logs and temporary files
+# =========================================================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+
+# =========================================================
+# IDE and operating system
+# =========================================================
+.vscode/*
+!.vscode/settings.json
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================================================
+# Secrets and local environment files
+# =========================================================
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+
+# =========================================================
+# Native compilation artifacts
+# =========================================================
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.obj
+*.lib
+*.dll
+*.exp
