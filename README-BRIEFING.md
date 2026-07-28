@@ -1068,7 +1068,10 @@ editar
 | Hito 0 — Entorno                          | ✅ Completo  | 2026-07-27      |
 | Hito 1 — CNN base                         | ✅ Completo  | 2026-07-27      |
 | Hito 2 — Preactivaciones                  | ✅ Completo  | 2026-07-28      |
-| Hito 3 — Aproximaciones                   | ⬜ Pendiente | —               |
+| Hito 3A — Construcción matemática         | ✅ Completo  | 2026-07-28      |
+| Hito 3B — Error funcional                 | ⬜ Pendiente | —               |
+| Hito 3C — Integración CNN clara           | ⬜ Pendiente | —               |
+| Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
 | Hito 4 — CKKS                             | ⬜ Pendiente | —               |
 | Hito 5 — Benchmarking                     | ⬜ Pendiente | —               |
 | Hito 6 — Análisis                         | ⬜ Pendiente | —               |
@@ -1085,37 +1088,48 @@ editar
 
 ## 18. Bitácora de decisiones
 
-| Fecha      | Decisión                                                           | Justificación                                                                                                                                |
-| ---------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-07-27 | Se adopta el patrón `src/ckks_benchmark/`                          | Evita utilizar `src` como nombre del paquete.                                                                                                |
-| 2026-07-27 | Se crea `configs/`                                                 | Separa los parámetros científicos y criptográficos del código.                                                                               |
-| 2026-07-27 | Se evita duplicar parámetros entre YAML y `config.py`              | Mantiene una única fuente de verdad.                                                                                                         |
-| 2026-07-27 | Se adopta `pyproject.toml` como fuente principal                   | Reduce la divergencia de dependencias y configuración.                                                                                       |
-| 2026-07-27 | Se mantiene `requirements.txt` sin versiones definitivas           | Las versiones se fijarán después de validar el Hito 0.                                                                                       |
-| 2026-07-27 | Se adopta Ruff                                                     | Unifica linting, formateo y organización de imports.                                                                                         |
-| 2026-07-27 | Se crea configuración de VS Code por proyecto                      | Evita afectar otros repositorios y entornos de trabajo.                                                                                      |
-| 2026-07-27 | Se inicializa Git en la rama `main`                                | Establece trazabilidad desde el inicio del proyecto.                                                                                         |
-| 2026-07-27 | Se crea el repositorio `ckks-polynomial-inference-benchmark`       | Identifica el artefacto experimental del proyecto.                                                                                           |
-| 2026-07-27 | Se incorporan manifests por ejecución                              | Garantiza la trazabilidad y reproducibilidad experimental.                                                                                   |
-| 2026-07-27 | Se separan `depth.py` e `instrumentation.py`                       | Distingue la profundidad multiplicativa teórica de los niveles observados durante la ejecución.                                              |
-| 2026-07-27 | Se establece Paterson–Stockmeyer como variable controlada          | Evita confundir el método de aproximación con la estrategia de evaluación polinómica.                                                        |
-| 2026-07-27 | No se ejecutará bootstrapping                                      | La capacidad restante se medirá mediante niveles disponibles de la cadena de módulos.                                                        |
-| 2026-07-27 | Taylor se considera baseline desfavorable                          | ReLU no es diferenciable en cero y no posee una serie de Taylor clásica alrededor del origen.                                                |
-| 2026-07-27 | Se separan tres tipos de error                                     | Evita mezclar el error de aproximación, el error numérico de CKKS y el consumo de niveles.                                                   |
-| 2026-07-27 | Se medirán tres niveles de precisión                               | Permite separar `Δ_aproximación` y `Δ_CKKS`.                                                                                                 |
-| 2026-07-27 | Se valida Python 3.11.9 x64 para el proyecto                       | Es la versión utilizada para compilar e instalar Pyfhel 3.5.0.                                                                               |
-| 2026-07-27 | Se adopta compilación desde fuente para Pyfhel                     | No existía un wheel compatible para Windows y CPython 3.11.                                                                                  |
-| 2026-07-27 | Se valida Pyfhel 3.5.0 sobre Windows 11                            | El smoke test CKKS completó cifrado, suma, multiplicación y descifrado con errores inferiores a `1e-5`.                                      |
-| 2026-07-27 | Se fijan NumPy 2.4.6 y Pyfhel 3.5.0                                | Son las versiones verificadas durante el Hito 0.                                                                                             |
-| 2026-07-27 | Se adopta `AvgPool2d` en la CNN base                               | Mantiene ReLU como la única operación no polinómica objeto de aproximación.                                                                  |
-| 2026-07-27 | Se adopta ReducedLeNet con 51 902 parámetros                       | La arquitectura supera el criterio mínimo de accuracy y F1 sin necesidad de escalar el modelo.                                               |
-| 2026-07-27 | Se selecciona el mejor checkpoint por validación                   | La época 8 obtuvo mejor accuracy de validación que las épocas 9 y 10.                                                                        |
-| 2026-07-27 | Se fija la línea base ReLU sobre MNIST                             | Se obtuvo accuracy de test `0.9901` y F1 macro de test `0.989983` con el checkpoint de la época 8.                                           |
-| 2026-07-28 | Se adopta una estrategia híbrida para caracterizar preactivaciones | Las estadísticas básicas se calculan sobre todos los valores y los percentiles mediante submuestreo proporcional reproducible                |
-| 2026-07-28 | Se definen I1 e I2 como políticas por activación                   | I1 cubre el 99 % central e I2 el 99.9 % central, manteniendo las 24 configuraciones experimentales                                           |
-| 2026-07-28 | Se mantienen intervalos asimétricos                                | La distribución observada, especialmente en `act2`, presenta una cola negativa considerablemente más amplia                                  |
-| 2026-07-28 | Se valida la estabilidad del submuestreo                           | Los 12 límites fueron estables entre las seeds 42 y 123; máxima diferencia relativa de 0.945 %                                               |
-| 2026-07-28 | Se realiza revisión por canal                                      | `act1` presenta asimetría localizada en el canal 4, mientras que el rango amplio de `act2` es estructural y distribuido entre varios canales |
+| Fecha      | Decisión                                                               | Justificación                                                                                                                                |
+| ---------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-07-27 | Se adopta el patrón `src/ckks_benchmark/`                              | Evita utilizar `src` como nombre del paquete.                                                                                                |
+| 2026-07-27 | Se crea `configs/`                                                     | Separa los parámetros científicos y criptográficos del código.                                                                               |
+| 2026-07-27 | Se evita duplicar parámetros entre YAML y `config.py`                  | Mantiene una única fuente de verdad.                                                                                                         |
+| 2026-07-27 | Se adopta `pyproject.toml` como fuente principal                       | Reduce la divergencia de dependencias y configuración.                                                                                       |
+| 2026-07-27 | Se mantiene `requirements.txt` sin versiones definitivas               | Las versiones se fijarán después de validar el Hito 0.                                                                                       |
+| 2026-07-27 | Se adopta Ruff                                                         | Unifica linting, formateo y organización de imports.                                                                                         |
+| 2026-07-27 | Se crea configuración de VS Code por proyecto                          | Evita afectar otros repositorios y entornos de trabajo.                                                                                      |
+| 2026-07-27 | Se inicializa Git en la rama `main`                                    | Establece trazabilidad desde el inicio del proyecto.                                                                                         |
+| 2026-07-27 | Se crea el repositorio `ckks-polynomial-inference-benchmark`           | Identifica el artefacto experimental del proyecto.                                                                                           |
+| 2026-07-27 | Se incorporan manifests por ejecución                                  | Garantiza la trazabilidad y reproducibilidad experimental.                                                                                   |
+| 2026-07-27 | Se separan `depth.py` e `instrumentation.py`                           | Distingue la profundidad multiplicativa teórica de los niveles observados durante la ejecución.                                              |
+| 2026-07-27 | Se establece Paterson–Stockmeyer como variable controlada              | Evita confundir el método de aproximación con la estrategia de evaluación polinómica.                                                        |
+| 2026-07-27 | No se ejecutará bootstrapping                                          | La capacidad restante se medirá mediante niveles disponibles de la cadena de módulos.                                                        |
+| 2026-07-27 | Taylor se considera baseline desfavorable                              | ReLU no es diferenciable en cero y no posee una serie de Taylor clásica alrededor del origen.                                                |
+| 2026-07-27 | Se separan tres tipos de error                                         | Evita mezclar el error de aproximación, el error numérico de CKKS y el consumo de niveles.                                                   |
+| 2026-07-27 | Se medirán tres niveles de precisión                                   | Permite separar `Δ_aproximación` y `Δ_CKKS`.                                                                                                 |
+| 2026-07-27 | Se valida Python 3.11.9 x64 para el proyecto                           | Es la versión utilizada para compilar e instalar Pyfhel 3.5.0.                                                                               |
+| 2026-07-27 | Se adopta compilación desde fuente para Pyfhel                         | No existía un wheel compatible para Windows y CPython 3.11.                                                                                  |
+| 2026-07-27 | Se valida Pyfhel 3.5.0 sobre Windows 11                                | El smoke test CKKS completó cifrado, suma, multiplicación y descifrado con errores inferiores a `1e-5`.                                      |
+| 2026-07-27 | Se fijan NumPy 2.4.6 y Pyfhel 3.5.0                                    | Son las versiones verificadas durante el Hito 0.                                                                                             |
+| 2026-07-27 | Se adopta `AvgPool2d` en la CNN base                                   | Mantiene ReLU como la única operación no polinómica objeto de aproximación.                                                                  |
+| 2026-07-27 | Se adopta ReducedLeNet con 51 902 parámetros                           | La arquitectura supera el criterio mínimo de accuracy y F1 sin necesidad de escalar el modelo.                                               |
+| 2026-07-27 | Se selecciona el mejor checkpoint por validación                       | La época 8 obtuvo mejor accuracy de validación que las épocas 9 y 10.                                                                        |
+| 2026-07-27 | Se fija la línea base ReLU sobre MNIST                                 | Se obtuvo accuracy de test `0.9901` y F1 macro de test `0.989983` con el checkpoint de la época 8.                                           |
+| 2026-07-28 | Se adopta una estrategia híbrida para caracterizar preactivaciones     | Las estadísticas básicas se calculan sobre todos los valores y los percentiles mediante submuestreo proporcional reproducible                |
+| 2026-07-28 | Se definen I1 e I2 como políticas por activación                       | I1 cubre el 99 % central e I2 el 99.9 % central, manteniendo las 24 configuraciones experimentales                                           |
+| 2026-07-28 | Se mantienen intervalos asimétricos                                    | La distribución observada, especialmente en `act2`, presenta una cola negativa considerablemente más amplia                                  |
+| 2026-07-28 | Se valida la estabilidad del submuestreo                               | Los 12 límites fueron estables entre las seeds 42 y 123; máxima diferencia relativa de 0.945 %                                               |
+| 2026-07-28 | Se realiza revisión por canal                                          | `act1` presenta asimetría localizada en el canal 4, mientras que el rango amplio de `act2` es estructural y distribuido entre varios canales |
+| 2026-07-28 | Se reutiliza `ProportionalBatchSampler` para el muestreo de validación | Evita reimplementar el muestreo y mantiene coherencia con el Hito 2; genera la muestra reproducible para los pilotos del Hito 3.             |
+| 2026-07-28 | Se muestrean preactivaciones de validación para los pilotos            | Los intervalos provienen de entrenamiento; el error empírico se mide en validación (no usada para construir intervalos) para evitar sesgo.   |
+| 2026-07-28 | El conjunto de prueba se reserva para la evaluación final              | Selección de β, método, grado e intervalo se hace con validación; usar test para decidir sería fuga de información.                          |
+| 2026-07-28 | Se congela β = 1 para Taylor                                           | Piloto sobre β ∈ {1,3,5,10,20} en `act1-I1` y verificación en `act2-I2`: β=1 dio menor error empírico y coeficientes más estables.           |
+| 2026-07-28 | Se fija x₀ = 0 como punto de expansión de Taylor                       | Es el punto de transición de ReLU; desplazarlo introduciría una variable experimental adicional.                                             |
+| 2026-07-28 | Se construye Taylor con SymPy (derivación simbólica offline)           | Evita errores algebraicos en las derivadas de Softplus hasta grado 9; SymPy no interviene en inferencia ni benchmarking.                     |
+| 2026-07-28 | Chebyshev se implementa por proyección L² ponderada                    | Un ajuste LSQ en base Chebyshev sería idéntico a mínimos cuadrados; la ponderación 1/√(1−t²) lo distingue como método propio.                |
+| 2026-07-28 | Mínimos cuadrados se implementa como ajuste L² discreto uniforme       | Malla uniforme de 1000 puntos vía `numpy.linalg.lstsq` (SVD estable), sin ponderación, distinto de Chebyshev.                                |
+| 2026-07-28 | Todos los métodos exportan coeficientes en base monomial               | Permite comparar y evaluar los tres métodos con la misma estrategia en los hitos posteriores.                                                |
+| 2026-07-28 | Se registra la distinción grado nominal vs. grado efectivo             | Los coeficientes de orden alto nulos (p. ej. Taylor grado 5 → efectivo 4) afectan la profundidad multiplicativa real en CKKS.                |
+| 2026-07-28 | Se generan y versionan 72 polinomios desde el JSON del Hito 2          | `registry.py` consume `preactivation_intervals.json` (con trazabilidad SHA-256); 48 tests validan reproducibilidad y estructura.             |
 
 ---
 
