@@ -109,3 +109,11 @@ Makefile
 *.lib
 *.dll
 *.exp
+
+
+s
+# =========================================================
+# PowerShell session transcripts
+# =========================================================
+logs/powershell/*
+!logs/powershell/.gitkeep
