@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-28T18:26:01.423255",
+  "git_commit": "231d5a95e8efd59dfac9151e03c6aad796f87c27",
+  "python": "3.11.9",
+  "torch": "2.13.0+cpu",
+  "checkpoint": "models/reduced_lenet_relu_best.pt",
+  "polynomials_sha256": "d13549a1af116d2caaeb32f446e6fa2a919de7479060026a5dd3b716a2718e91",
+  "split": "validation",
+  "relu_baseline": {
+    "accuracy": 0.9886666666666667,
+    "macro_f1": 0.988639498871579,
+    "loss": 0.036317734781031806
+  },
+  "n_configurations": 24,
+  "execution_seconds": 22.08
+}
