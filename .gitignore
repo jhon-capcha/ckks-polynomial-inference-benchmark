@@ -39,13 +39,14 @@ dist/
 .eggs/
 
 # =========================================================
-# Dataset
+# Datasets (regenerables, no se versionan)
 # =========================================================
 data/*
 !data/.gitkeep
+data/processed/*.npz
 
 # =========================================================
-# Trained models
+# Trained models (regenerables con train.py)
 # =========================================================
 models/*
 !models/.gitkeep
@@ -53,20 +54,33 @@ models/*
 # =========================================================
 # Experimental results
 #
-# Se conservan las carpetas. Los resultados publicados se
-# agregarán de forma explícita según la política del proyecto.
+# Politica: se ignoran salidas crudas, voluminosas o
+# regenerables. Se versiona explicitamente la evidencia
+# validada del proyecto.
 # =========================================================
+
+# Crudos y regenerables: ignorados (solo se conserva la carpeta)
 results/raw/*
 !results/raw/.gitkeep
-
 results/processed/*
 !results/processed/.gitkeep
-
-results/figures/*
-!results/figures/.gitkeep
-
 results/manifests/*
 !results/manifests/.gitkeep
+
+# Figuras: ignoradas por defecto, salvo las aprobadas
+results/figures/*
+!results/figures/.gitkeep
+!results/figures/preactivation_act1_histogram.png
+!results/figures/preactivation_act2_histogram.png
+!results/figures/preactivation_act3_histogram.png
+!results/figures/preactivation_channel_ranges.png
+
+# Evidencia validada del Hito 2: se versiona
+!results/published/
+!results/published/**
+
+# Nota: results/approximations, results/pilots y results/tables
+# NO se ignoran (son evidencia del Hito 3, se versionan por defecto).
 
 # =========================================================
 # Logs and temporary files
@@ -79,11 +93,16 @@ results/manifests/*
 ~$*
 
 # =========================================================
+# PowerShell session transcripts
+# =========================================================
+logs/powershell/*
+!logs/powershell/.gitkeep
+
+# =========================================================
 # IDE and operating system
 # =========================================================
 .vscode/*
 !.vscode/settings.json
-
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -99,7 +118,7 @@ desktop.ini
 *.p12
 
 # =========================================================
-# Native compilation artifacts
+# Native compilation artifacts (Pyfhel / SEAL build)
 # =========================================================
 CMakeFiles/
 CMakeCache.txt
@@ -109,22 +128,3 @@ Makefile
 *.lib
 *.dll
 *.exp
-
-
-s
-# =========================================================
-# PowerShell session transcripts
-# =========================================================
-logs/powershell/*
-!logs/powershell/.gitkeep
-
-# Resultados oficiales y validados
-!results/published/
-!results/published/**
-
-
-# Excepción: figuras aprobadas del Hito 2
-!results/figures/preactivation_act1_histogram.png
-!results/figures/preactivation_act2_histogram.png
-!results/figures/preactivation_act3_histogram.png
-!results/figures/preactivation_channel_ranges.png
