@@ -35,7 +35,6 @@ function global:prompt {
 # Iniciar el transcript.
 Start-Transcript `
     -Path $logFile `
-    -IncludeInvocationHeader `
     -Force
 
 Write-Host ""
