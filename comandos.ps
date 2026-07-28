@@ -1,6 +1,0 @@
-
-if (Test-Path $vswhere) {
-    & $vswhere -products * -all -format table
-} else {
-    Write-Host "vswhere.exe no encontrado"
-}
