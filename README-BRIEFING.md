@@ -1030,32 +1030,32 @@ editar
 
 ## 16. Decisiones pendientes
 
-| Decisión                                    | Hito límite | Estado    |
-| ------------------------------------------- | ----------- | --------- |
-| Versión definitiva de Python                | Hito 0      | Pendiente |
-| Versión compatible de Pyfhel                | Hito 0      | Pendiente |
-| Mecanismo de instalación de Pyfhel          | Hito 0      | Pendiente |
-| Versiones de PyTorch y torchvision          | Hito 0      | Pendiente |
-| Arquitectura exacta de LeNet reducida       | Hito 1      | Pendiente |
-| Hiperparámetros de entrenamiento            | Hito 1      | Pendiente |
-| Seed definitiva                             | Hito 1      | Pendiente |
-| Valores concretos de I1 e I2                | Hito 2      | Pendiente |
-| Capas cuyas preactivaciones se medirán      | Hito 2      | Pendiente |
-| Definición operacional de Taylor            | Hito 3      | Pendiente |
-| Parámetro de suavizado o punto de expansión | Hito 3      | Pendiente |
-| Base común de coeficientes                  | Hito 3      | Pendiente |
-| Parámetros CKKS definitivos                 | Hito 4      | Pendiente |
-| `poly_modulus_degree`                       | Hito 4      | Pendiente |
-| `coeff_mod_bit_sizes`                       | Hito 4      | Pendiente |
-| Escala inicial                              | Hito 4      | Pendiente |
-| Política exacta de rescale                  | Hito 4      | Pendiente |
-| Número de warm-ups                          | Hito 4      | Pendiente |
-| Número de repeticiones                      | Hito 4      | Pendiente |
-| Tamaño de muestra cifrada                   | Hito 4      | Pendiente |
-| Umbral de viabilidad numérica               | Hito 4      | Pendiente |
-| Criterio de ejecución inválida              | Hito 5      | Pendiente |
-| Formato final de resultados                 | Hito 5      | Pendiente |
-| Criterio de dominancia de Pareto            | Hito 6      | Pendiente |
+| Decisión                                    | Hito límite | Estado                                                                |
+| ------------------------------------------- | ----------- | --------------------------------------------------------------------- |
+| Versión definitiva de Python                | Hito 0      | Resuelto: Python 3.11.9 x64                                           |
+| Versión compatible de Pyfhel                | Hito 0      | Resuelto: Pyfhel 3.5.0                                                |
+| Mecanismo de instalación de Pyfhel          | Hito 0      | Resuelto: compilación desde fuente con Visual Studio Build Tools 2022 |
+| Versiones de PyTorch y torchvision          | Hito 1      | Pendiente                                                             |
+| Arquitectura exacta de LeNet reducida       | Hito 1      | Pendiente                                                             |
+| Hiperparámetros de entrenamiento            | Hito 1      | Pendiente                                                             |
+| Seed definitiva                             | Hito 1      | Pendiente                                                             |
+| Valores concretos de I1 e I2                | Hito 2      | Pendiente                                                             |
+| Capas cuyas preactivaciones se medirán      | Hito 2      | Pendiente                                                             |
+| Definición operacional de Taylor            | Hito 3      | Pendiente                                                             |
+| Parámetro de suavizado o punto de expansión | Hito 3      | Pendiente                                                             |
+| Base común de coeficientes                  | Hito 3      | Pendiente                                                             |
+| Parámetros CKKS definitivos                 | Hito 4      | Pendiente                                                             |
+| `poly_modulus_degree`                       | Hito 4      | Pendiente                                                             |
+| `coeff_mod_bit_sizes`                       | Hito 4      | Pendiente                                                             |
+| Escala inicial                              | Hito 4      | Pendiente                                                             |
+| Política exacta de rescale                  | Hito 4      | Pendiente                                                             |
+| Número de warm-ups                          | Hito 4      | Pendiente                                                             |
+| Número de repeticiones                      | Hito 4      | Pendiente                                                             |
+| Tamaño de muestra cifrada                   | Hito 4      | Pendiente                                                             |
+| Umbral de viabilidad numérica               | Hito 4      | Pendiente                                                             |
+| Criterio de ejecución inválida              | Hito 5      | Pendiente                                                             |
+| Formato final de resultados                 | Hito 5      | Pendiente                                                             |
+| Criterio de dominancia de Pareto            | Hito 6      | Pendiente                                                             |
 
 ---
 
@@ -1064,8 +1064,8 @@ editar
 | Fase                                      | Estado       | Fecha de cierre |
 | ----------------------------------------- | ------------ | --------------- |
 | Infraestructura: estructura, Git y GitHub | ✅ Completo  | 2026-07-27      |
-| Briefing del proyecto                     | 🔄 En curso  | —               |
-| Hito 0 — Entorno                          | ⬜ Pendiente | —               |
+| Briefing del proyecto                     | ✅ Completo  | 2026-07-27      |
+| Hito 0 — Entorno                          | ✅ Completo  | 2026-07-27      |
 | Hito 1 — CNN base                         | ⬜ Pendiente | —               |
 | Hito 2 — Preactivaciones                  | ⬜ Pendiente | —               |
 | Hito 3 — Aproximaciones                   | ⬜ Pendiente | —               |
@@ -1085,24 +1085,28 @@ editar
 
 ## 18. Bitácora de decisiones
 
-| Fecha      | Decisión                                                     | Justificación                                                     |
-| ---------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
-| 2026-07-27 | Se adopta el patrón `src/ckks_benchmark/`                    | Evita utilizar `src` como nombre del paquete                      |
-| 2026-07-27 | Se separan `depth.py` e `instrumentation.py`                 | Distingue profundidad teórica de niveles observados               |
-| 2026-07-27 | Se incorporan manifests por ejecución                        | Garantiza trazabilidad experimental                               |
-| 2026-07-27 | Se crea `configs/`                                           | Separa parámetros científicos y criptográficos del código         |
-| 2026-07-27 | Se evita duplicar parámetros entre YAML y `config.py`        | Mantiene una única fuente de verdad                               |
-| 2026-07-27 | Se adopta `pyproject.toml` como fuente principal             | Reduce divergencia de dependencias y configuración                |
-| 2026-07-27 | Se mantiene `requirements.txt` sin versiones definitivas     | Las versiones se fijarán después del Hito 0                       |
-| 2026-07-27 | Se adopta Ruff                                               | Unifica linting, formato e imports                                |
-| 2026-07-27 | Se crea configuración de VS Code por proyecto                | Evita afectar otros repositorios                                  |
-| 2026-07-27 | Se inicializa Git en la rama `main`                          | Establece trazabilidad desde el inicio                            |
-| 2026-07-27 | Se crea el repositorio `ckks-polynomial-inference-benchmark` | Identifica el artefacto experimental                              |
-| 2026-07-27 | Se establece Paterson–Stockmeyer como variable controlada    | Evita confundir método de aproximación y estrategia de evaluación |
-| 2026-07-27 | No se ejecutará bootstrapping                                | Se medirá capacidad restante mediante niveles                     |
-| 2026-07-27 | Taylor se considera baseline desfavorable                    | ReLU no es diferenciable en cero                                  |
-| 2026-07-27 | Se separan tres tipos de error                               | Evita atribuciones incorrectas                                    |
-| 2026-07-27 | Se medirán tres niveles de precisión                         | Permite separar `Δ_aproximación` y `Δ_CKKS`                       |
+| Fecha      | Decisión                                                     | Justificación                                                                                                  |
+| ---------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| 2026-07-27 | Se adopta el patrón `src/ckks_benchmark/`                    | Evita utilizar `src` como nombre del paquete                                                                   |
+| 2026-07-27 | Se separan `depth.py` e `instrumentation.py`                 | Distingue profundidad teórica de niveles observados                                                            |
+| 2026-07-27 | Se incorporan manifests por ejecución                        | Garantiza trazabilidad experimental                                                                            |
+| 2026-07-27 | Se crea `configs/`                                           | Separa parámetros científicos y criptográficos del código                                                      |
+| 2026-07-27 | Se evita duplicar parámetros entre YAML y `config.py`        | Mantiene una única fuente de verdad                                                                            |
+| 2026-07-27 | Se adopta `pyproject.toml` como fuente principal             | Reduce divergencia de dependencias y configuración                                                             |
+| 2026-07-27 | Se mantiene `requirements.txt` sin versiones definitivas     | Las versiones se fijarán después del Hito 0                                                                    |
+| 2026-07-27 | Se adopta Ruff                                               | Unifica linting, formato e imports                                                                             |
+| 2026-07-27 | Se crea configuración de VS Code por proyecto                | Evita afectar otros repositorios                                                                               |
+| 2026-07-27 | Se inicializa Git en la rama `main`                          | Establece trazabilidad desde el inicio                                                                         |
+| 2026-07-27 | Se crea el repositorio `ckks-polynomial-inference-benchmark` | Identifica el artefacto experimental                                                                           |
+| 2026-07-27 | Se establece Paterson–Stockmeyer como variable controlada    | Evita confundir método de aproximación y estrategia de evaluación                                              |
+| 2026-07-27 | No se ejecutará bootstrapping                                | Se medirá capacidad restante mediante niveles                                                                  |
+| 2026-07-27 | Taylor se considera baseline desfavorable                    | ReLU no es diferenciable en cero                                                                               |
+| 2026-07-27 | Se separan tres tipos de error                               | Evita atribuciones incorrectas                                                                                 |
+| 2026-07-27 | Se medirán tres niveles de precisión                         | Permite separar `Δ_aproximación` y `Δ_CKKS`                                                                    |
+| 2026-07-27 | Se valida Python 3.11.9 x64 para el proyecto                 | Es la versión utilizada para compilar e instalar Pyfhel 3.5.0                                                  |
+| 2026-07-27 | Se valida Pyfhel 3.5.0 sobre Windows 11                      | El smoke test CKKS completó cifrado, suma, multiplicación y descifrado con errores máximos inferiores a `1e-5` |
+| 2026-07-27 | Se adopta compilación desde fuente para Pyfhel               | No existía wheel compatible para Windows y CPython 3.11                                                        |
+| 2026-07-27 | Se fijan NumPy 2.4.6 y Pyfhel 3.5.0                          | Son las versiones verificadas durante el Hito 0                                                                |
 
 ---
 

@@ -1,0 +1,3 @@
+# Dependencias validadas durante el Hito 0.
+numpy==2.4.6
+Pyfhel==3.5.0

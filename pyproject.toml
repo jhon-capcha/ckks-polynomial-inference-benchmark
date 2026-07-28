@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=83.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ckks-polynomial-inference-benchmark"
+version = "0.1.0"
+description = "Experimental benchmark of polynomial approximations for secure neural network inference using CKKS."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Jhon Capcha" }
+]
+
+dependencies = [
+    "numpy==2.4.6",
+    "Pyfhel==3.5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
