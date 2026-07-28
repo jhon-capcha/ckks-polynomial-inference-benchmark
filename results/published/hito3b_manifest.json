@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-28T14:54:39.377037",
+  "git_commit": "f6169d42437a67556567b3f4de57357cb86d7cb1",
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "polynomials_source": "results/approximations/coefficients/polynomials.json",
+  "polynomials_sha256": "d13549a1af116d2caaeb32f446e6fa2a919de7479060026a5dd3b716a2718e91",
+  "samples_source": "data/processed/preactivations_validation_sample.npz",
+  "samples_sha256": "dfae5e37343e7e777300f0469da7060d36b90f8ff731d682d5900491265a5b2f",
+  "uniform_grid_points": 10000,
+  "origin_half_width": 0.5,
+  "n_configurations": 72,
+  "execution_seconds": 0.464
+}
