@@ -19,6 +19,7 @@ dependencies = [
     "Pyfhel==3.5.0",
     "torch==2.13.0",
     "torchvision==0.28.0",
+    "matplotlib==3.11.1",
 ]
 
 [tool.setuptools.packages.find]

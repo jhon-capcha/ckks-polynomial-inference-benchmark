@@ -1,10 +1,13 @@
 # Intervalos de aproximación polinómica derivados del Hito 2.
-# Preactivaciones de ReducedLeNet (checkpoint época 8) sobre MNIST train (54000).
-# Asimétricos, política global por activación. Seed oficial 42.
+# Modelo: ReducedLeNet, checkpoint correspondiente a la época 8.
+# Dataset: MNIST train, split reproducible de 54 000 imágenes.
+# Política: intervalos bilaterales, asimétricos y globales por activación.
+# Seed oficial: 42. Seed diagnóstica de estabilidad: 123.
 
 interval_policies:
   I1:
-    description: "Intervalo bilateral central del 99% por activación"
+    description: "Intervalo bilateral central del 99 % por activación"
+    coverage_percent: 99.0
     lower_percentile: 0.5
     upper_percentile: 99.5
     symmetric: false
@@ -12,8 +15,10 @@ interval_policies:
       act1: [-6.6096, 7.2350]
       act2: [-18.4731, 9.0930]
       act3: [-15.7802, 12.5193]
+
   I2:
-    description: "Intervalo bilateral central del 99.9% por activación"
+    description: "Intervalo bilateral central del 99.9 % por activación"
+    coverage_percent: 99.9
     lower_percentile: 0.05
     upper_percentile: 99.95
     symmetric: false
