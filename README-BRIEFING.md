@@ -1069,7 +1069,7 @@ editar
 | Hito 1 — CNN base                         | ✅ Completo  | 2026-07-27      |
 | Hito 2 — Preactivaciones                  | ✅ Completo  | 2026-07-28      |
 | Hito 3A — Construcción matemática         | ✅ Completo  | 2026-07-28      |
-| Hito 3B — Error funcional                 | ⬜ Pendiente | —               |
+| Hito 3B — Error funcional                 | ✅ Completo  | 2026-07-28      |
 | Hito 3C — Integración CNN clara           | ⬜ Pendiente | —               |
 | Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
 | Hito 4 — CKKS                             | ⬜ Pendiente | —               |
@@ -1130,6 +1130,12 @@ editar
 | 2026-07-28 | Todos los métodos exportan coeficientes en base monomial               | Permite comparar y evaluar los tres métodos con la misma estrategia en los hitos posteriores.                                                |
 | 2026-07-28 | Se registra la distinción grado nominal vs. grado efectivo             | Los coeficientes de orden alto nulos (p. ej. Taylor grado 5 → efectivo 4) afectan la profundidad multiplicativa real en CKKS.                |
 | 2026-07-28 | Se generan y versionan 72 polinomios desde el JSON del Hito 2          | `registry.py` consume `preactivation_intervals.json` (con trazabilidad SHA-256); 48 tests validan reproducibilidad y estructura.             |
+| 2026-07-28 | Se establece el error empírico como métrica principal del Hito 3B      | Refleja la distribución real de preactivaciones; el error uniforme queda como diagnóstico sobre todo el intervalo.                           |
+| 2026-07-28 | Una configuración se invalida solo por no-finitud                      | Un error alto pero finito es un resultado válido (p. ej. Taylor grado 9); no se elimina, permanece en la tabla como evidencia.               |
+| 2026-07-28 | La viabilidad práctica se registra en columna separada                 | Umbral operativo provisional de salida máxima 10⁶; no es un límite CKKS definitivo, que se decidirá en los Hitos 4 y 5.                      |
+| 2026-07-28 | El error cerca del origen usa malla uniforme como métrica principal    | Garantiza comparabilidad entre las 72 configuraciones; la variante empírica depende de la masa muestral de cada activación.                  |
+| 2026-07-28 | Se documenta el bias_ratio bidireccional como hallazgo                 | Chebyshev/LSQ presentan bias<1 (datos concentrados en el origen); Taylor presenta bias>1 (falla en colas casi vacías de datos reales).       |
+| 2026-07-28 | Taylor grado 9 es prácticamente inviable en act2 y act3                | Intervalo amplio + grado alto produce salidas > 10⁶; en act1 (rango estrecho) sigue viable. 72 válidas, 0 inválidas, 4 no viables.           |
 
 ---
 

@@ -75,6 +75,10 @@ results/figures/*
 !results/figures/preactivation_act3_histogram.png
 !results/figures/preactivation_channel_ranges.png
 
+# Excepción: figuras del Hito 3B
+!results/figures/hito3b/
+!results/figures/hito3b/**
+
 # Evidencia validada del Hito 2: se versiona
 !results/published/
 !results/published/**
