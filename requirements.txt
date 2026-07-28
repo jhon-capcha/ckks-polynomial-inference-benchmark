@@ -1,3 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 # Dependencias validadas durante el Hito 0.
 numpy==2.4.6
 Pyfhel==3.5.0
+
+# Dependencias validadas durante el Hito 1.
+torch==2.13.0+cpu
+torchvision==0.28.0+cpu

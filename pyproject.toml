@@ -17,6 +17,8 @@ authors = [
 dependencies = [
     "numpy==2.4.6",
     "Pyfhel==3.5.0",
+    "torch==2.13.0",
+    "torchvision==0.28.0",
 ]
 
 [tool.setuptools.packages.find]

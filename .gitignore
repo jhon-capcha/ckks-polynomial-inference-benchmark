@@ -117,3 +117,7 @@ s
 # =========================================================
 logs/powershell/*
 !logs/powershell/.gitkeep
+
+# Resultados oficiales y validados
+!results/published/
+!results/published/**
