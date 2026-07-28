@@ -121,3 +121,10 @@ logs/powershell/*
 # Resultados oficiales y validados
 !results/published/
 !results/published/**
+
+
+# Excepción: figuras aprobadas del Hito 2
+!results/figures/preactivation_act1_histogram.png
+!results/figures/preactivation_act2_histogram.png
+!results/figures/preactivation_act3_histogram.png
+!results/figures/preactivation_channel_ranges.png

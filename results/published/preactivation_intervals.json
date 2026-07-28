@@ -1,0 +1,63 @@
+{
+  "checkpoint": {
+    "path": "models/reduced_lenet_relu_best.pt",
+    "best_epoch": 8,
+    "activation": "ReLU",
+    "torch_version": "2.13.0+cpu"
+  },
+  "dataset": {
+    "name": "MNIST",
+    "split": "training",
+    "images": 54000,
+    "augmentation": false,
+    "seed_official": 42,
+    "diagnostic_seed": 123
+  },
+  "interval_policy": {
+    "I1": "central_99_percent",
+    "I2": "central_99_9_percent",
+    "shape": "asymmetric",
+    "scope": "global_per_activation"
+  },
+  "intervals": {
+    "I1": {
+      "act1": [
+        -6.6096,
+        7.235
+      ],
+      "act2": [
+        -18.4731,
+        9.093
+      ],
+      "act3": [
+        -15.7802,
+        12.5193
+      ]
+    },
+    "I2": {
+      "act1": [
+        -8.4503,
+        8.7557
+      ],
+      "act2": [
+        -24.8339,
+        12.2336
+      ],
+      "act3": [
+        -22.1493,
+        16.3974
+      ]
+    }
+  },
+  "stability": {
+    "seeds": [
+      42,
+      123
+    ],
+    "limits_compared": 12,
+    "limits_stable": 12,
+    "maximum_absolute_difference": 0.1565,
+    "maximum_relative_difference_percent": 0.945,
+    "status": "stable"
+  }
+}
