@@ -79,6 +79,10 @@ results/figures/*
 !results/figures/hito3b/
 !results/figures/hito3b/**
 
+# Excepción: figuras del Hito 3C
+!results/figures/hito3c/
+!results/figures/hito3c/**
+
 # Evidencia validada del Hito 2: se versiona
 !results/published/
 !results/published/**

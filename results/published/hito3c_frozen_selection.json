@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0",
+  "phase": "Hito 3C-C",
+  "selection_status": "frozen",
+  "test_used": false,
+  "selection_split": "validation",
+  "selection_rules": {
+    "minimum_validation_accuracy": 0.9,
+    "require_finite_outputs": true,
+    "require_practical_viability": true,
+    "tie_accuracy_tolerance": 0.001,
+    "categories": [
+      "maximum_accuracy (best per method)",
+      "degree5_tradeoff",
+      "degree3_low_depth",
+      "interval_comparison"
+    ]
+  },
+  "selected_for_ckks": [
+    {
+      "configuration_id": "chebyshev_d7_I2",
+      "method": "chebyshev",
+      "degree": 7,
+      "interval_name": "I2",
+      "validation_accuracy": 0.9863333333333333,
+      "validation_macro_f1": 0.9862825221482108,
+      "delta_accuracy_vs_relu": 0.0023333333333334094,
+      "max_effective_degree": 7,
+      "max_abs_coefficient": 0.7781697280228419,
+      "selection_category": "maximum_accuracy",
+      "selection_reason": "Best validation accuracy among eligible chebyshev configurations"
+    },
+    {
+      "configuration_id": "least_squares_d7_I2",
+      "method": "least_squares",
+      "degree": 7,
+      "interval_name": "I2",
+      "validation_accuracy": 0.9863333333333333,
+      "validation_macro_f1": 0.9862994431211136,
+      "delta_accuracy_vs_relu": 0.0023333333333334094,
+      "max_effective_degree": 7,
+      "max_abs_coefficient": 0.7344625011003194,
+      "selection_category": "maximum_accuracy",
+      "selection_reason": "Best validation accuracy among eligible least_squares configurations"
+    },
+    {
+      "configuration_id": "chebyshev_d5_I1",
+      "method": "chebyshev",
+      "degree": 5,
+      "interval_name": "I1",
+      "validation_accuracy": 0.9851666666666666,
+      "validation_macro_f1": 0.9850984469280872,
+      "delta_accuracy_vs_relu": 0.0035000000000000586,
+      "max_effective_degree": 5,
+      "max_abs_coefficient": 0.8424512529420917,
+      "selection_category": "degree5_tradeoff",
+      "selection_reason": "Best eligible chebyshev degree-5 configuration (intermediate complexity)"
+    },
+    {
+      "configuration_id": "least_squares_d5_I2",
+      "method": "least_squares",
+      "degree": 5,
+      "interval_name": "I2",
+      "validation_accuracy": 0.9838333333333333,
+      "validation_macro_f1": 0.9837777591673669,
+      "delta_accuracy_vs_relu": 0.004833333333333356,
+      "max_effective_degree": 5,
+      "max_abs_coefficient": 1.0117264882639874,
+      "selection_category": "degree5_tradeoff",
+      "selection_reason": "Best eligible least_squares degree-5 configuration (intermediate complexity)"
+    },
+    {
+      "configuration_id": "chebyshev_d3_I1",
+      "method": "chebyshev",
+      "degree": 3,
+      "interval_name": "I1",
+      "validation_accuracy": 0.9381666666666667,
+      "validation_macro_f1": 0.9402811247304589,
+      "delta_accuracy_vs_relu": 0.05049999999999999,
+      "max_effective_degree": 3,
+      "max_abs_coefficient": 1.4345322691841986,
+      "selection_category": "degree3_low_depth",
+      "selection_reason": "Best eligible chebyshev degree-3 configuration (lower multiplicative depth)"
+    },
+    {
+      "configuration_id": "least_squares_d3_I1",
+      "method": "least_squares",
+      "degree": 3,
+      "interval_name": "I1",
+      "validation_accuracy": 0.9646666666666667,
+      "validation_macro_f1": 0.9650535919726698,
+      "delta_accuracy_vs_relu": 0.02400000000000002,
+      "max_effective_degree": 3,
+      "max_abs_coefficient": 1.2612859694364056,
+      "selection_category": "degree3_low_depth",
+      "selection_reason": "Best eligible least_squares degree-3 configuration (lower multiplicative depth)"
+    },
+    {
+      "configuration_id": "chebyshev_d5_I2",
+      "method": "chebyshev",
+      "degree": 5,
+      "interval_name": "I2",
+      "validation_accuracy": 0.9816666666666667,
+      "validation_macro_f1": 0.9815706929835427,
+      "delta_accuracy_vs_relu": 0.007000000000000006,
+      "max_effective_degree": 5,
+      "max_abs_coefficient": 1.1042956814548412,
+      "selection_category": "interval_comparison",
+      "selection_reason": "Interval comparison pair chebyshev d5 (I1 vs I2)"
+    },
+    {
+      "configuration_id": "least_squares_d5_I1",
+      "method": "least_squares",
+      "degree": 5,
+      "interval_name": "I1",
+      "validation_accuracy": 0.983,
+      "validation_macro_f1": 0.9831421063379222,
+      "delta_accuracy_vs_relu": 0.005666666666666709,
+      "max_effective_degree": 5,
+      "max_abs_coefficient": 0.7726073077285118,
+      "selection_category": "interval_comparison",
+      "selection_reason": "Interval comparison pair least_squares d5 (I1 vs I2)"
+    }
+  ],
+  "diagnostic_baselines": [
+    {
+      "configuration_id": "taylor_d5_I1",
+      "method": "taylor",
+      "degree": 5,
+      "interval_name": "I1",
+      "validation_accuracy": 0.1525,
+      "purpose": "diagnostic_baseline",
+      "selected_for_ckks": false,
+      "reason": "Finite but classification performance is not practically viable"
+    }
+  ],
+  "excluded": [
+    {
+      "configuration_id": "chebyshev_d3_I2",
+      "excluded_reason": "accuracy_below_threshold (<0.9)"
+    },
+    {
+      "configuration_id": "chebyshev_d7_I1",
+      "excluded_reason": "accuracy_below_threshold (<0.9)"
+    },
+    {
+      "configuration_id": "chebyshev_d9_I1",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    },
+    {
+      "configuration_id": "chebyshev_d9_I2",
+      "excluded_reason": "eligible_but_not_selected (dominated by chosen candidates)"
+    },
+    {
+      "configuration_id": "least_squares_d3_I2",
+      "excluded_reason": "accuracy_below_threshold (<0.9)"
+    },
+    {
+      "configuration_id": "least_squares_d7_I1",
+      "excluded_reason": "accuracy_below_threshold (<0.9)"
+    },
+    {
+      "configuration_id": "least_squares_d9_I1",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    },
+    {
+      "configuration_id": "least_squares_d9_I2",
+      "excluded_reason": "eligible_but_not_selected (dominated by chosen candidates)"
+    },
+    {
+      "configuration_id": "taylor_d3_I1",
+      "excluded_reason": "not_practically_viable (accuracy near chance)"
+    },
+    {
+      "configuration_id": "taylor_d3_I2",
+      "excluded_reason": "not_practically_viable (accuracy near chance)"
+    },
+    {
+      "configuration_id": "taylor_d5_I2",
+      "excluded_reason": "not_practically_viable (accuracy near chance)"
+    },
+    {
+      "configuration_id": "taylor_d7_I1",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    },
+    {
+      "configuration_id": "taylor_d7_I2",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    },
+    {
+      "configuration_id": "taylor_d9_I1",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    },
+    {
+      "configuration_id": "taylor_d9_I2",
+      "excluded_reason": "invalid_non_finite (collapse at act3)"
+    }
+  ],
+  "counts": {
+    "selected": 8,
+    "diagnostics": 1,
+    "excluded": 15,
+    "total": 24
+  },
+  "inputs": {
+    "combined_analysis_csv": "results/tables/hito3c_combined_analysis.csv",
+    "functional_metrics_csv": "results/tables/hito3b_functional_metrics.csv",
+    "cnn_metrics_csv": "results/tables/hito3c_cnn_validation_metrics.csv"
+  },
+  "hashes": {
+    "combined_analysis_csv": "fced04a1a19bb377489d5b19e13e098cd452ee7703ec377d02a6426221e9b942",
+    "functional_metrics_csv": "3ba7f55ab1d96f15fb07f473b9751a51a7bbdd88de96efe1189e9617caeb09ab",
+    "cnn_metrics_csv": "5fd54a92c8e18c5249cad72829f3503bc082350d4ca43102699405b5edf05110"
+  },
+  "git_commit": "f1f540b05f418f629da8367fb13df9d2646ac010",
+  "created_at_utc": "2026-07-29T01:30:43.752140+00:00"
+}
