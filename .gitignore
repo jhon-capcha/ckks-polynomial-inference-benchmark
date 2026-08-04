@@ -140,3 +140,7 @@ Makefile
 # Claves CKKS: nunca versionar
 artifacts/ckks/keys/
 *.key
+
+# Excepcion: figuras del Hito 4
+!results/figures/hito4/
+!results/figures/hito4/**
