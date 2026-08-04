@@ -1072,7 +1072,7 @@ editar
 | Hito 3B — Error funcional                 | ✅ Completo  | 2026-07-28      |
 | Hito 3C — Integración CNN clara           | ✅ Completo  | 2026-07-29      |
 | Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
-| Hito 4 — CKKS                             | ⬜ Pendiente | —               |
+| Hito 4 — CKKS                             | ✅ Completo  | 2026-08-04      |
 | Hito 5 — Benchmarking                     | ⬜ Pendiente | —               |
 | Hito 6 — Análisis                         | ⬜ Pendiente | —               |
 
@@ -1144,6 +1144,15 @@ editar
 | 2026-07-29 | Shortlist de 8 congelada por reglas categóricas, sin IDs predefinidos  | Reglas generales (mejor por método/grado/intervalo) produjeron la shortlist; test_used=false, hashes de entradas registrados antes de test.                               |
 | 2026-07-29 | Δ_aproximación final sobre test: la aproximación es viable             | Mejor config pierde ~0.37% de accuracy vs ReLU (base test 0.9901). Grado 5 es el compromiso favorable. Taylor colapsa (−83.5%).                                           |
 | 2026-07-29 | Consistencia validación↔test sin evidencia de sobreajuste              | Máxima brecha val↔test 0.61% (chebyshev_d3_I1). La selección sobre validación generalizó a test sin degradación inesperada.                                               |
+| 2026-08-03 | Perfiles CKKS congelados tras piloto de factibilidad (4-P0)            | N=16384, escala 2^40, primos de 40 bits. Perfil d3 (cadena 280 bits, prof. 4) y d5 (360 bits, prof. 6), ambos 128-bit verificado. Cadena de 440 bits da sec=0 (prohibida).       |
+| 2026-08-03 | mod_level en Pyfhel cuenta niveles consumidos (sube con rescale)       | Descubierto empíricamente: mod_level=0 fresco, +1 por rescale; límite = profundidad del perfil. Instrumentación (nivel/escala) valida precondiciones antes de operar (evita segfaults). |
+| 2026-08-03 | Horner congelado como estrategia oficial de evaluación (grados 3 y 5)  | Horner completa d3 (3 niveles) y d5 (5 niveles) con error CKKS ~1e-6. power_basis explorado, no adoptado: no redujo niveles en d3 y falló por alineación de escala en d5/d7.      |
+| 2026-08-03 | Grado 7 no factible con Horner bajo perfil n16384_c8                   | Requiere ~7 niveles; la cadena segura provee 6 (scale out of bounds). Acotado al escenario: no es inviabilidad universal (podría con N=32768 u otra estrategia; fuera de alcance).  |
+| 2026-08-03 | Error CKKS ≈1000× menor que el error de aproximación                   | 18 polinomios oficiales sobre muestras reales: MAE CKKS 1e-6 a 1.6e-4, vs error aproximación ~1e-1 del Hito 3B. El error crece con grado y con profundidad de activación (act3>act1). |
+| 2026-08-03 | Empaquetado SIMD del bloque final (120 slots, padding a 128)           | act3 sobre 120 valores en paralelo (una evaluación Horner); fc2 por producto matriz-vector con reducción rotate+add en árbol (7 rotaciones). Convención rotate(+1)=izquierda verificada. |
+| 2026-08-03 | Bloque act3→fc2 factible con grados 3 y 5 en el perfil seguro          | d5+fc2 = 6 niveles, usa toda la cadena pero completa. Las 6 configuraciones oficiales (Cheby/LSQ, d3/d5, I1/I2) factibles, sin valores no finitos.                                |
+| 2026-08-04 | Δ_CKKS = 0 en accuracy: el cifrado es funcionalmente transparente      | 100 imágenes test estratificadas, 6 configs: cero cambios de predicción en 600 inferencias cifradas (concordancia 1.000). Todo el error viene de la aproximación, no del cifrado.  |
+| 2026-08-04 | Referencia polinómica pura para aislar Δ_CKKS (verificada por etapas)  | Δ_CKKS = CNN polinómica clara − bloque cifrado. Equivalencia estructural (flujo por etapas = modelo completo) verificada con diff 0.00. test_used solo para evaluar, no para seleccionar. |
 
 ---
 
