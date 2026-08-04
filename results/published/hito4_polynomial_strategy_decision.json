@@ -1,0 +1,42 @@
+{
+  "phase": "Hito 4C",
+  "official_strategy": "horner",
+  "official_supported_degrees": [
+    3,
+    5
+  ],
+  "maximum_official_degree": 5,
+  "degree7_status": "infeasible_with_horner_under_n16384_c8",
+  "degree7_note": "Grado 7 no factible mediante Horner bajo el perfil seguro n16384_c8 (scale 2^40, 128-bit, sin bootstrapping): requiere ~7 niveles y la cadena provee 6. No se afirma inviabilidad universal en CKKS; podria ser viable con N=32768, una estrategia de menor profundidad, u otra cadena compatible con seguridad, o bootstrapping (fuera de alcance).",
+  "experimental_strategy": {
+    "name": "power_basis",
+    "status": "explored_not_adopted",
+    "degree3": {
+      "success": true,
+      "levels_consumed": 3,
+      "note": "no redujo niveles frente a Horner (mismo 3)"
+    },
+    "degree5": {
+      "success": false,
+      "failure_reason": "scale mismatch en alineacion de ramas"
+    },
+    "degree7": {
+      "success": false,
+      "failure_reason": "scale mismatch en alineacion de ramas"
+    }
+  },
+  "decision_reason": [
+    "Horner completa grados 3 y 5 con error CKKS ~1e-6 a 1e-4 sobre muestras reales",
+    "Power-basis no redujo el consumo de niveles en grado 3 (mismo que Horner)",
+    "Power-basis introdujo fallos de alineacion de escala en grados 5 y 7",
+    "La optimizacion de circuitos CKKS esta fuera del alcance principal (activaciones polinomicas)"
+  ],
+  "ckks_error_summary": {
+    "max_mae_ckks": 0.000157,
+    "max_mae_config": "act3_chebyshev_d5_I1",
+    "all_finite": true,
+    "note": "Error CKKS ~1000x menor que el error de aproximacion del Hito 3B (~1e-1)"
+  },
+  "generated_at_utc": "2026-08-04T03:26:07.434730+00:00",
+  "git_commit": "4e8536995c865e62bc0ea13866569a8d9f96bc63"
+}
