@@ -1073,7 +1073,7 @@ editar
 | Hito 3C — Integración CNN clara           | ✅ Completo  | 2026-07-29      |
 | Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
 | Hito 4 — CKKS                             | ✅ Completo  | 2026-08-04      |
-| Hito 5 — Benchmarking                     | ⬜ Pendiente | —               |
+| Hito 5 — Benchmarking                     | ✅ Completo  | 2026-08-04      |
 | Hito 6 — Análisis                         | ⬜ Pendiente | —               |
 
 ### Leyenda
@@ -1153,6 +1153,14 @@ editar
 | 2026-08-03 | Bloque act3→fc2 factible con grados 3 y 5 en el perfil seguro          | d5+fc2 = 6 niveles, usa toda la cadena pero completa. Las 6 configuraciones oficiales (Cheby/LSQ, d3/d5, I1/I2) factibles, sin valores no finitos.                                |
 | 2026-08-04 | Δ_CKKS = 0 en accuracy: el cifrado es funcionalmente transparente      | 100 imágenes test estratificadas, 6 configs: cero cambios de predicción en 600 inferencias cifradas (concordancia 1.000). Todo el error viene de la aproximación, no del cifrado.  |
 | 2026-08-04 | Referencia polinómica pura para aislar Δ_CKKS (verificada por etapas)  | Δ_CKKS = CNN polinómica clara − bloque cifrado. Equivalencia estructural (flujo por etapas = modelo completo) verificada con diff 0.00. test_used solo para evaluar, no para seleccionar. |
+| 2026-08-04 | Benchmark de latencia: 1800 inferencias con warm-up y orden aleatorizado | 6 configs × 10 imágenes × 30 reps + 3 warm-up. Timer online aislado (encrypt/act3/fc2/decrypt); objetos reutilizados; setup medido aparte. Residual temporal cero.  |
+| 2026-08-04 | Estadística jerarquizada: mediana y P95 principales                    | La mediana es robusta ante interrupciones del SO; el mínimo no se usa como cifra principal. Media/desv/P99/CV como complementarias.                               |
+| 2026-08-04 | Hallazgo: fc2 domina la latencia (58–70%) por las rotaciones           | fc2 hace 70 rotaciones (7/logit × 10), independientes del grado. Grado 3: 189ms, grado 5: 245ms (+30%). Baja varianza (P95 a ~3–8% de la mediana).                |
+| 2026-08-04 | Hallazgo: el incremento grado 3→5 viene de act3 (76%)                  | +42ms de act3 (Horner encadena 5 mult vs 3) de un total +56ms; fc2 casi constante (+10ms). Resultado explicativo, no solo descriptivo: conecta profundidad↔latencia. |
+| 2026-08-04 | Método e intervalo no afectan latencia ni huella (solo precisión)      | Cheby=LSQ e I1=I2 en latencia (<0.5ms) y tamaño (<0.01%). Cambian la calidad de aproximación, no la estructura del circuito homomórfico.                          |
+| 2026-08-04 | Huella de almacenamiento: las claves de rotación dominan               | 172MB (d3) a 312MB (d5, +82%). Expansión de cifrado ~1400–1900x en entrada. Se reporta como huella de almacenamiento/comunicación (bytes serializados), no RAM.   |
+| 2026-08-04 | Frontera de Pareto: 4 configuraciones no dominadas (latencia≈proxy de niveles) | least_squares_d5_I1 (0.990, máx precisión) y least_squares_d3_I1 (0.960, más rápida) como extremos. Añadir niveles no cambia la frontera (correlacionan con grado). |
+| 2026-08-04 | Taylor excluido del benchmark de latencia                             | Su circuito homomórfico es idéntico a cualquier denso de grado 5; su utilidad ya se descartó en Hitos 3–4. Medirlo no aporta una categoría nueva de costo.        |
 
 ---
 
