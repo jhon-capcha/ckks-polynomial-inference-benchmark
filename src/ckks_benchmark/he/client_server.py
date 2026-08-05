@@ -58,12 +58,22 @@ class CKKSServer:
 
     def infer(self, encrypted_z, recorder: OperationRecorder | None = None) -> list:
         """Evalúa el bloque final cifrado: act3 -> fc2. Devuelve 10 ciphertexts."""
-        # act3 polinómica (Horner) sobre los 120 valores empaquetados (SIMD).
         act3_ct = evaluate_polynomial_ckks(
             self.he, encrypted_z, self.act3_coeffs, strategy="horner", recorder=recorder
         )
-        # fc2: producto matriz-vector cifrado -> 10 logits.
         logit_cts = encrypted_linear_simd(
             self.he, act3_ct, self.W, self.b, logical_size=self.logical_size, recorder=recorder
         )
         return logit_cts
+
+    def infer_act3(self, encrypted_z, recorder: OperationRecorder | None = None):
+        """Solo la activación act3 (para medir su latencia por separado)."""
+        return evaluate_polynomial_ckks(
+            self.he, encrypted_z, self.act3_coeffs, strategy="horner", recorder=recorder
+        )
+
+    def infer_fc2(self, act3_ct, recorder: OperationRecorder | None = None) -> list:
+        """Solo la capa fc2 (para medir su latencia por separado)."""
+        return encrypted_linear_simd(
+            self.he, act3_ct, self.W, self.b, logical_size=self.logical_size, recorder=recorder
+        )
