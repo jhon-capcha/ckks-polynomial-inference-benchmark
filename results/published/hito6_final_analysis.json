@@ -1,0 +1,67 @@
+{
+  "phase": "Hito 6 (analisis final)",
+  "research_questions": {
+    "RQ1": {
+      "answer_summary": "El grado determina el consumo de niveles (grado 3->3, grado 5->5 en act3 aislada, Horner). Metodo e intervalo conservan la estructura (mismo costo teorico) pero alteran el error numerico CKKS observado. act3 presento el mayor MAE CKKS.",
+      "key_evidence": "levels uniformes por grado; MAE act3 grado 5 varia 2.3x (6.73e-5 a 1.57e-4) entre configs; rango global 3e-6 a 1.57e-4"
+    },
+    "RQ2": {
+      "answer_summary": "El grado determina la profundidad (bloque: grado 3->4, grado 5->6 niveles) y tiene relacion clara con la precision (no la determina en solitario). Grado 3 pierde 2.54-4.58pp; grado 5, 0.39-0.84pp. Grado 7 no factible. Grado 5 es el punto de mayor precision viable.",
+      "key_evidence": "ReLU test=0.9901; mejor grado 5 (cheby_d5_I1)=0.9862 (-0.39pp); cifrado no cambio predicciones (100 img, MAE logits no nulo)"
+    },
+    "RQ3": {
+      "answer_summary": "Latencia absoluta dominada por fc2 (rotaciones); incremento entre grados explicado por act3. Grado 3 ~189ms, grado 5 ~245ms (+30%). Metodo/intervalo no afectan latencia (<0.5ms). Profundidad evaluable bajo cadena comun es inferencia estructural, no medida.",
+      "key_evidence": "act3 +42ms (76% del incremento); fc2 58-70% del total; perfiles dimensionados (margen 0 en ambos)"
+    }
+  },
+  "pareto_frontiers": {
+    "strict": [
+      "chebyshev_d5_I1",
+      "chebyshev_d5_I2",
+      "least_squares_d3_I1",
+      "chebyshev_d3_I1"
+    ],
+    "material": [
+      "least_squares_d3_I1",
+      "chebyshev_d5_I1"
+    ],
+    "material_epsilon_latency_ms": 0.5,
+    "material_epsilon_accuracy": 0.001
+  },
+  "recommended_configurations": {
+    "minimum_cost": {
+      "configuration_id": "least_squares_d3_I1",
+      "accuracy_test": 0.9647,
+      "latency_ms": 189.0,
+      "levels": 4,
+      "rotation_keys_mb": 171.6
+    },
+    "maximum_viable_precision": {
+      "configuration_id": "chebyshev_d5_I1",
+      "accuracy_test": 0.9862,
+      "latency_ms": 244.8,
+      "levels": 6,
+      "rotation_keys_mb": 312.2
+    }
+  },
+  "tradeoff_between_regimes": {
+    "accuracy_gain_pp": 2.15,
+    "latency_increase_pct": 29.5,
+    "latency_saving_pct": 22.8,
+    "levels_added": 2,
+    "rotation_keys_increase_pct": 81.9,
+    "rotation_keys_saving_pct": 45.0
+  },
+  "central_findings": [
+    "El cifrado CKKS es funcionalmente transparente (no cambio predicciones en la muestra evaluada).",
+    "El grado acopla las tres dimensiones (profundidad, precision, latencia).",
+    "Grado 5 es el punto de mayor precision viable; grado 7 no factible bajo el perfil.",
+    "fc2 (rotaciones) domina la latencia absoluta; act3 (Horner) domina el incremento por grado.",
+    "Metodo e intervalo afectan la precision, no el costo estructural.",
+    "La decision practica es binaria: menor costo (lsq_d3_I1) o maxima precision (cheby_d5_I1)."
+  ],
+  "note_storage": "La huella es tamano serializado (comunicacion/almacenamiento), no memoria RAM residente.",
+  "note_security": "128 bits configurado y aceptado por Pyfhel/SEAL; sin estimacion criptografica independiente.",
+  "generated_at_utc": "2026-08-06T04:41:23.003231+00:00",
+  "git_commit": "ebc193bfd96fd18b4cfe7f69553d6fe9108fb765"
+}

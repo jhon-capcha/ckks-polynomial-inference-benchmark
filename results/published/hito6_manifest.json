@@ -1,0 +1,17 @@
+{
+  "phase": "Hito 6 (analisis final)",
+  "no_primary_data": "El Hito 6 integra y sintetiza; no genera datos primarios nuevos.",
+  "official_accuracy_source": "hito3c_validation_test_comparison.csv (test completo, 10000 img)",
+  "official_latency_source": "hito5_latency_by_config.csv (corrida oficial con desglose, 1800 inf)",
+  "official_footprint_source": "hito5_resource_consumption.csv (bytes serializados)",
+  "hashes": {
+    "master_results": "d9f7fe6a750be52dbee821f11d292c884e9312ad60823da8e368246ffd8402d1",
+    "evidence_matrix": "9201144bab1655b95b90ddb2f736683fbaa8f847fe2313a54fcc5ac877a68ab3",
+    "final_analysis": "1c216caa0b7e6e55fc690888751b89d88011d56e788651ea54d7dd30ea2c21c6",
+    "precision_source": "cf6d1e1c57b6721853bc25cc8fd492742be511f7fd1d91224386c01ecc44878c",
+    "latency_source": "a9575b871d1bf112cf8ed80866b8414021f11ec278f3a6df7e6cf0d58a50336b",
+    "footprint_source": "8043ce5cadeb80570ca22bae0dfbe3611e4c134e9e67c0993014512f2ce009ab"
+  },
+  "generated_at_utc": "2026-08-06T04:41:23.068643+00:00",
+  "git_commit": "ebc193bfd96fd18b4cfe7f69553d6fe9108fb765"
+}
