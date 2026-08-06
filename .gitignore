@@ -148,3 +148,6 @@ artifacts/ckks/keys/
 # Excepcion: figuras del Hito 6
 !results/figures/hito6/
 !results/figures/hito6/**
+
+# Carpeta de demostracion para exposicion (uso local, no versionar)
+/demo/
