@@ -1071,7 +1071,7 @@ editar
 | Hito 3A — Construcción matemática         | ✅ Completo  | 2026-07-28      |
 | Hito 3B — Error funcional                 | ✅ Completo  | 2026-07-28      |
 | Hito 3C — Integración CNN clara           | ✅ Completo  | 2026-07-29      |
-| Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
+| Hito 3D — Evidencia y documentación       | ✅ Completo  | 2026-08-06      |
 | Hito 4 — CKKS                             | ✅ Completo  | 2026-08-04      |
 | Hito 5 — Benchmarking                     | ✅ Completo  | 2026-08-04      |
 | Hito 6 — Análisis                         | ✅ Completo  | 2026-08-05      |
@@ -1170,6 +1170,7 @@ editar
 | 2026-08-05 | Pareto recalculado con accuracy del test completo cambió la frontera          | Con cifras finas, cheby_d5_I1 (0.9862) entra y lsq_d5_I1 sale (vs el Pareto del 5D sobre 100 img). Trazabilidad: ambas fronteras documentadas en la tabla maestra. |
 | 2026-08-05 | Trade-off binario: menor costo (lsq_d3_I1) o máxima precisión (cheby_d5_I1)   | +2.15pp accuracy por +29.5% latencia, +2 niveles, +81.9% claves de rotación. No apareció compromiso intermedio no dominado bajo los objetivos evaluados.          |
 | 2026-08-05 | Huella serializada ≠ memoria RAM; seguridad configurada ≠ verificada          | Se midieron bytes serializados (comunicación/almacenamiento), no RAM residente. 128 bits aceptados por Pyfhel/SEAL, sin estimación criptográfica independiente.   |
+| 2026-08-06 | Documentación consolidada del Hito 3 (3D): síntesis, no regeneración          | Documento rector `hito3_consolidado.md` que reúne 3A/3B/3C con cifras verificadas contra fuentes (72 configs, shortlist 8, correlación 0.818). Referencia evidencia existente sin duplicar. |
 
 ---
 
