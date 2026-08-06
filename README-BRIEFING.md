@@ -1074,7 +1074,7 @@ editar
 | Hito 3D — Evidencia y documentación       | ⬜ Pendiente | —               |
 | Hito 4 — CKKS                             | ✅ Completo  | 2026-08-04      |
 | Hito 5 — Benchmarking                     | ✅ Completo  | 2026-08-04      |
-| Hito 6 — Análisis                         | ⬜ Pendiente | —               |
+| Hito 6 — Análisis                         | ✅ Completo  | 2026-08-05      |
 
 ### Leyenda
 
@@ -1161,6 +1161,15 @@ editar
 | 2026-08-04 | Huella de almacenamiento: las claves de rotación dominan               | 172MB (d3) a 312MB (d5, +82%). Expansión de cifrado ~1400–1900x en entrada. Se reporta como huella de almacenamiento/comunicación (bytes serializados), no RAM.   |
 | 2026-08-04 | Frontera de Pareto: 4 configuraciones no dominadas (latencia≈proxy de niveles) | least_squares_d5_I1 (0.990, máx precisión) y least_squares_d3_I1 (0.960, más rápida) como extremos. Añadir niveles no cambia la frontera (correlacionan con grado). |
 | 2026-08-04 | Taylor excluido del benchmark de latencia                             | Su circuito homomórfico es idéntico a cualquier denso de grado 5; su utilidad ya se descartó en Hitos 3–4. Medirlo no aporta una categoría nueva de costo.        |
+| 2026-08-05 | Matriz evidencia-afirmación como control de trazabilidad del Hito 6   | 20 afirmaciones (RQ1/2/3 + fronteras + guía), cada una con fuente, columnas, configuraciones, valor, alcance y limitación. Ninguna afirmación sin respaldo verificado. |
+| 2026-08-05 | Accuracy oficial del test completo (3C) para precisión, no la muestra de 100 (4F) | La magnitud de pérdida de aproximación usa test completo (10000 img); el 4F (100 img) solo prueba que el cifrado no cambia predicciones. No mezclar pilotos con oficiales. |
+| 2026-08-05 | RQ1: separar costo estructural (invariante) de error numérico CKKS (sensible) | Método/intervalo conservan niveles/operaciones a igual grado, pero alteran el MAE CKKS (2.3x en grado 5). act3 es el máximo error, sin afirmar cascada (evaluación aislada). |
+| 2026-08-05 | RQ2: grado 5 preserva casi toda la precisión (no la iguala); grado 7 no factible | Mejor grado 5 (cheby_d5_I1) pierde 0.39pp vs ReLU. El grado no determina la precisión en solitario (método/intervalo influyen). Mejor global (d7=0.9864) no factible bajo CKKS. |
+| 2026-08-05 | RQ3: latencia absoluta (fc2) vs incremento por grado (act3), distinguidos     | fc2 domina el total (58-70%, rotaciones); act3 explica el incremento 3→5 (76%). El +10ms de fc2 no se aisló causalmente. Residual cero = consistencia aritmética, no validación. |
+| 2026-08-05 | Frontera ε-material (tolerancia 0.5ms) además de la estricta                  | La estricta (4 configs) captura diferencias submilisegundo no materiales. La material (2 configs: lsq_d3_I1, cheby_d5_I1) aplica el umbral de RQ3. Estricta para auditoría, material para la guía. |
+| 2026-08-05 | Pareto recalculado con accuracy del test completo cambió la frontera          | Con cifras finas, cheby_d5_I1 (0.9862) entra y lsq_d5_I1 sale (vs el Pareto del 5D sobre 100 img). Trazabilidad: ambas fronteras documentadas en la tabla maestra. |
+| 2026-08-05 | Trade-off binario: menor costo (lsq_d3_I1) o máxima precisión (cheby_d5_I1)   | +2.15pp accuracy por +29.5% latencia, +2 niveles, +81.9% claves de rotación. No apareció compromiso intermedio no dominado bajo los objetivos evaluados.          |
+| 2026-08-05 | Huella serializada ≠ memoria RAM; seguridad configurada ≠ verificada          | Se midieron bytes serializados (comunicación/almacenamiento), no RAM residente. 128 bits aceptados por Pyfhel/SEAL, sin estimación criptográfica independiente.   |
 
 ---
 
