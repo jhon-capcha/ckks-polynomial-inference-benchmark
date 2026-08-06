@@ -1,0 +1,44 @@
+{
+  "phase": "Hito 3 (aproximacion polinomica) - documentacion consolidada (3D)",
+  "sub_hitos": {
+    "3A": "Construccion matematica (Chebyshev, LSQ, Taylor; base monomial)",
+    "3B": "Evaluacion funcional del error (72 configuraciones)",
+    "3C": "Integracion CNN clara, seleccion congelada, evaluacion test"
+  },
+  "base_model": {
+    "architecture": "ReducedLeNet",
+    "trainable_params": 51902,
+    "relu_test_accuracy": 0.9901,
+    "relu_test_macro_f1": 0.99
+  },
+  "counts": {
+    "configurations_3B": 72,
+    "configurations_3C": 24,
+    "valid": 18,
+    "practically_viable": 14,
+    "eligible_for_ckks": 10,
+    "frozen_shortlist": 8
+  },
+  "frozen_selection": {
+    "test_used": false,
+    "selection_split": "validation",
+    "note": "8 seleccionadas; 2 de grado 7 resultaron no factibles bajo CKKS (Hito 4); 6 de grados 3/5 evaluadas en Hitos 4-6."
+  },
+  "key_results": {
+    "best_clear_test": "least_squares_d7_I2 = 0.9864 (-0.37pp); no factible bajo CKKS",
+    "best_ckks_feasible_test": "chebyshev_d5_I1 = 0.9862 (-0.39pp)",
+    "correlation_functional_error_vs_accuracy": "Pearson 0.818, Spearman 0.467 (n=10, principal)",
+    "max_generalization_gap": "0.61pp (chebyshev_d3_I1); sin evidencia material de sobreajuste",
+    "taylor": "baseline desfavorable; colapsa (hasta -83.5pp)"
+  },
+  "anti_leakage": "Seleccion congelada sobre validacion (test_used=false); test solo para evaluacion final; no reajustada en Hitos 4-6.",
+  "hashes": {
+    "frozen_selection": "1f775ccf3d272d344303890c24d52f106857d59b2abf3d35f4a3b37038f2bf3e",
+    "functional_metrics_3B": "3ba7f55ab1d96f15fb07f473b9751a51a7bbdd88de96efe1189e9617caeb09ab",
+    "validation_test_comparison": "cf6d1e1c57b6721853bc25cc8fd492742be511f7fd1d91224386c01ecc44878c",
+    "analysis_summary_3C": "e0e8b561e535f5ae509143659f8d70631e030c5e126fc13d8f8968784011163e",
+    "consolidated_doc": "eef25d14984fbcbfe10380b41ff93a705fd4bca5953958357ed435e2a5bfe6ff"
+  },
+  "generated_at_utc": "2026-08-06T05:08:28.111774+00:00",
+  "git_commit": "2fed20b66cb4d0f23405ecc9bf550040cee17a53"
+}
